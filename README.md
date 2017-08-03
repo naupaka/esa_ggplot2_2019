@@ -2,8 +2,8 @@
 
 Welcome to the GitHub repository data visualization using R and ggplot2.
 
-**Location and time:** 
-B112, Oregon Convention Center
+**Location and time:**   
+B112, Oregon Convention Center    
 Sunday, August 6, 2017    
 12:00 PM - 5:00 PM   
 
