@@ -1,14 +1,14 @@
-# USU 2017 workshop on ggplot2.
+# ESA 2016 workshop on Data Visualization using R and ggplot2
 
 Welcome to the GitHub repository data visualization using R and ggplot2.
 
 **Location and time:** 
-Thursday, February 16, 2017    
-6:00 PM - 8:00 PM   
-NR *room number*
+B112, Oregon Convention Center
+Sunday, August 6, 2017    
+12:00 PM - 5:00 PM   
 
-## Stuff made and collated by...
-[Naupaka Zimmerman](http://naupaka.net) and [Andrew Tredennick](http://atredennick.github.io/).
+## Organizers
+[Andrew Tredennick](http://atredennick.github.io/) and [Naupaka Zimmerman](http://naupaka.net)
 
 ---
 
@@ -18,7 +18,7 @@ The R programming language is one of the most widely used tools for statistical 
 
 ## Pre workshop instructions
 
-**Important:** Plan on spending 10 minutes before showing up to download and install R and RStudio (this should already be done by this point, though, for Tom's workshop), to install the packages listed below, and to download a local copy of this repository (see instructions below).
+**Important:** There will be wifi in conference rooms this year, but plan on spending 10 minutes Saturday night (or even before arriving in Portland) to download and install R and RStudio, to install the packages listed below, and to download a local copy of this repository (see instructions below). It takes a bit of bandwidth to do all this, so best not to rely on convention center wifi.
 
 ### Installing R  
 If you don't already have R set up with a suitable code editor, we recommend downloading and installing [R](http://cran.cnr.berkeley.edu) and [RStudio Desktop](http://www.rstudio.com/ide/download/) for your platform. Once installed, open RStudio and install the following packages. Simply paste these commands into your prompt. 
@@ -37,13 +37,13 @@ You will want to copy and paste the above into the "Console" of RStudio, like be
 ![](cp_code.png)
 
 ### Downloading code/data from this repository  
-Simply hit the **Download ZIP** button at the top of this page (scroll up to see it). If you're not sure where to save it, just download and unzip to your Desktop. (We will also send out a zipped folder in an email.)
+Simply hit the **Download ZIP** button at the top-right of this page (scroll up to see it). If you're not sure where to save it, just download and unzip to your Desktop. (We will also send out a zipped folder in an email.)
 
 ![](how_to_clone_new.png)
 
 If you're having any trouble with these steps please drop me an [email](mailto:atredenn@gmail.com). I'll also strive to have local copies if you forget to install any of these tools.
 
-See you Thursday!
+See you Sunday!
 
 
 ---
