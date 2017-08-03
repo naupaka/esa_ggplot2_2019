@@ -1,0 +1,369 @@
+---
+title: "Data Visualization Using R & ggplot2"
+author: "Naupaka Zimmerman (@naupakaz) and Andrew Tredennick (@ATredennick) (and Karthik Ram (@_inundata))"
+date: "August 6, 2017"
+header-includes:
+   - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\footnotesize}
+   - \makeatletter
+   - \def\verbatim{\footnotesize\@verbatim \frenchspacing\@vobeyspaces \@xverbatim}
+   - \makeatother
+output:
+  beamer_presentation:
+    theme: "metropolis"
+    colortheme: "default"
+    fig_caption: no
+    slide_level: 2
+    keep_tex: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.width=4, fig.height=2.5, out.width='.75\\linewidth', fig.align='center')
+```
+
+## Some housekeeping
+Install some packages
+```{r house, echo=T, eval=F}
+install.packages("ggplot2", dependencies = TRUE)
+install.packages("ggthemes")
+install.packages("tidyr")
+install.packages("dplyr")
+```
+
+```{r house2, echo=F, eval=T, message=F}
+library(ggplot2)
+library(ggthemes)
+library(tidyr)
+library(dplyr)
+```
+
+# Why ggplot?
+
+## 1 minute
+```{r gap, echo=F, eval=T, fig.width=5, fig.height=4}
+library(ggplot2)
+library(gapminder)
+library(ggthemes)
+
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(shape = 1, aes(color = continent)) +
+  stat_smooth(method = "lm", size = 1, color = "black") +
+  scale_x_log10() + 
+  xlab("Per Capita GDP") + 
+  ylab("Life Expectancy (yrs)") +
+  facet_wrap(~continent) +
+  theme_few() + 
+  guides(color = FALSE)
+```
+
+## 1 minute
+```{r gap2, echo=T, eval=F, fig.width=5, fig.height=4}
+library(ggplot2)
+library(gapminder)
+library(ggthemes)
+
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(shape = 1, aes(color = continent)) +
+  stat_smooth(method = "lm", size = 1, color = "black") +
+  scale_x_log10() + 
+  xlab("Per Capita GDP") + 
+  ylab("Life Expectancy (yrs)") +
+  facet_wrap(~continent) +
+  theme_few() + 
+  guides(color = FALSE)
+```
+
+## 30 minutes
+```{r gap3, echo=FALSE, eval=TRUE,  fig.width=5, fig.height=4}
+library(scales)
+library(gapminder)
+gapminder <- as.data.frame(gapminder)
+conts <- unique(gapminder[,"continent"])
+cols <- scales::hue_pal()(length(conts))
+par(mfrow = c(2,3))
+counter <- 1
+for (i in conts) {
+  plot(gapminder[which(gapminder$continent == i), "gdpPercap"],
+       gapminder[which(gapminder$continent == i), "lifeExp"], col = cols[counter],
+       xlab = "Per Capita GDP", ylab = "Life Expectancy (yrs)",
+       main = i, las = 1, log = "x")
+  fit <- lm(gapminder[which(gapminder$continent == i), "lifeExp"] ~ log(gapminder[which(gapminder$continent == i), "gdpPercap"]))
+  pred <- predict(fit, interval = "confidence")
+  lines(sort(gapminder[which(gapminder$continent == i), "gdpPercap"]), sort(pred[,1]))
+  lines(sort(gapminder[which(gapminder$continent == i), "gdpPercap"]), sort(pred[,2]), lty = 2)
+  lines(sort(gapminder[which(gapminder$continent == i), "gdpPercap"]), sort(pred[,3]), lty = 2)
+  counter <- counter + 1
+}
+```
+
+## 30 minutes
+```{r gap4, echo=T, eval=F}
+library(scales)
+library(gapminder)
+gapminder <- as.data.frame(gapminder)
+conts <- unique(gapminder[,"continent"])
+cols <- scales::hue_pal()(length(conts))
+par(mfrow = c(2,3))
+counter <- 1
+for (i in conts) {
+  plot(gapminder[which(gapminder$continent == i), "gdpPercap"],
+       gapminder[which(gapminder$continent == i), "lifeExp"], col = cols[counter],
+       xlab = "Per Capita GDP", ylab = "Life Expectancy (yrs)",
+       main = i, las = 1, log = "x")
+  fit <- lm(gapminder[which(gapminder$continent == i), "lifeExp"] ~ 
+```
+
+## But wait, there's more...
+```{r gap5, echo=T, eval=F}
+log(gapminder[which(gapminder$continent == i), "gdpPercap"]))
+  pred <- predict(fit, interval = "confidence")
+  lines(sort(gapminder[which(gapminder$continent == i), "gdpPercap"]), sort(pred[,1]))
+  lines(sort(gapminder[which(gapminder$continent == i), "gdpPercap"]), sort(pred[,2]), lty = 2)
+  lines(sort(gapminder[which(gapminder$continent == i), "gdpPercap"]), sort(pred[,3]), lty = 2)
+  counter <- counter + 1
+}
+```
+
+
+# Why ggplot?
+
+##  Why ggplot?
+* More elegant and compact code than with base graphics
+* More aesthetically pleasing defaults than lattice
+* Very powerful for exploratory data analysis
+
+## Why ggplot?
+* \alert{gg} is for \alert{grammar of graphics} (term by Lee Wilkinson)
+* A set of terms that defines the basic components of a plot
+* Used to produce figures using coherant, consistant syntax
+
+##  Why ggplot2?
+* Supports a continuum of expertise
+* Easy to get started, plenty of power for complex figures 
+
+
+# The Grammar
+
+##  Some terminology
+### Data
+* Must be a data frame (```data.frame()```, ```as.data.frame()```)
+* Gets pulled into the ```ggplot()``` object
+
+##  tidyr
+Helps your data play nice with ggplot
+
+
+# Aesthetics
+
+## Some terminology
+### \alert{aes}thetics
+* How your data are represented visually 
+  + a.k.a. mapping
+* which data on the x
+* which data on the y
+* but also: \textcolor{red}{color}, \LARGE{size}, \normalsize{shape, transparency}
+
+# Geometries
+
+## Some terminology
+### \alert{geom}etry
+* The geometric objects in the plot
+* points, lines, polygons, etc.
+* functions: ```geom_point()```, ```geom_bar()```, ```geom_line()```
+
+##  Basic structure
+```{r strct-basic, echo=T, eval=F}
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) +
+  geom_point()
+
+# Equivalently...
+myplot <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width))
+myplot + geom_point()
+```
+
+* Specify the data and variables inside the ```ggplot()``` function.
+* Anything else that goes in here becomes a \emph{global} setting.
+* Then add layers: geometric objects, statistical models, and facets.
+
+##  Don't be tempted!
+* \alert{NEVER} use ```qplot()``` - short for quick plot.
+* You‘ll end up unlearning and relearning a good bit.
+
+# Exercise 1
+##  Exercise 1
+```{r d2-gen, eval=T, echo=T}
+# Make a small sample of the diamonds dataset
+d2 <- diamonds[sample(x = 1:nrow(diamonds), size = 1000), ]
+```
+The make this plot:
+```{r d2-plot, eval=T, echo=F}
+ggplot(data = d2, aes(x = carat, y = price, color = color)) +
+  geom_point()
+```
+
+# Stats
+##  Some terminology
+### \alert{stats}
+* Statistical transformations and data summary
+* All geoms have associated default stats, and vice versa
+* e.g. binning (the stat) for a histogram or fitting a linear model
+
+
+# Facets
+##  Some terminology
+### \alert{facet}s
+* Subsetting data to make lattice plots
+* Really powerful
+* I use in almost every publication
+
+# Scales
+## Some terminology
+### scales
+* Control the \emph{mapping} from data to aesthetics
+* Often used for adjusting color mapping (i.e., setting colors manually)
+
+##  Refer to a color chart for beautiful visualizations
+
+http://tools.medialab.sciences-po.fr/iwanthue/
+
+## Some common scales
+```{r com-scales, eval=F}
+scale_fill_discrete(); scale_colour_discrete()
+scale_fill_hue(); scale_color_hue()
+scale_fill_manual();  scale_color_manual()
+scale_fill_brewer(); scale_color_brewer()
+scale_linetype(); scale_shape_manual()
+```
+
+# Coordinates
+## Some terminology
+### \alert{coord}inates
+* Not going to cover this in detail
+* e.g. polar coordinate plots
+
+##  Don't try this at home...please!
+```{r makdat, eval=T, echo=F}
+mydata <- data.frame(group = c(LETTERS[1:4]),
+                     proportion = c(0.25,0.50,0.20,0.05))
+```
+
+```{r pie, eval=T, echo=T}
+ggplot(mydata, aes(x = "", y = proportion, fill = group)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start=0) +
+  theme_void()
+```
+
+# Putting it all together with more examples
+# Histograms
+
+# Line plots
+
+# Exercise 2
+##  Exercise 2
+* Modify the last plot and change the ribbon to three separate lines, like below:
+```{r conf-ex, echo=F}
+climate <- read.csv("../data/climate.csv", header = TRUE)
+ggplot(climate, aes(Year, Anomaly10y)) +
+  geom_line(aes(y = Anomaly10y - Unc10y, x = Year), color="red", linetype=2) +
+  geom_line(aes(y = Anomaly10y + Unc10y, x = Year), color="red", linetype=2) +
+  geom_line(color = "black")
+```
+
+# Bar plots
+
+# Exercises 3, 4, & 5
+##  Exercise 3
+Using the ```d2``` dataset you created earlier, make this plot:
+```{r d2-bar, echo=F}
+ggplot(d2, aes(x = clarity, fill = cut)) +
+  geom_bar(position = "dodge")
+```
+
+##  Exercise 4
+Use ```dplyr``` to summarize the iris data, then make the plot below.
+```{r iris-summ}
+iris_agg <- iris %>%
+  group_by(Species) %>%
+  summarise(mean_petal_len = mean(Petal.Length),
+            sd_petal_len = sd(Petal.Length))
+# ?geom_errorbar()
+```
+
+```{r iris-summ2, echo=F}
+ggplot(iris_agg, aes(x = Species, y = mean_petal_len, color = Species)) +
+  geom_point() +
+  geom_errorbar(aes(ymin = mean_petal_len - sd_petal_len,
+                    ymax = mean_petal_len + sd_petal_len), width = 0.15) +
+  xlab("Species") +
+  ylab("Mean Petal Length") +
+  guides(color=FALSE) +
+  theme_few()
+```
+
+##  Exercise 5
+* Using the ```climate``` dataset, create a new variable called ```sign```. Make it categorical (above/below) based on the sign of ```Anomaly10y```.
+* Plot a bar plot and use sign variable as the fill.
+```{r climanom, echo=F}
+climate$sign <- "above"
+climate[which(climate$Anomaly10y < 0), "sign"] <- "below"
+ggplot(climate, aes(x = Year, y = Anomaly10y, fill = sign)) +
+  geom_col() +
+  scale_fill_manual(values = c("dodgerblue", "salmon"))
+```
+
+# Density plots
+
+# Adding smoothers
+
+# Themes!
+##  Adding themes
+* Everything can be customized using ```theme()``` settings
+* http://ggplot2.tidyverse.org/reference/theme.html
+
+##  What about Wes Anderson?
+\begin{center}
+\includegraphics[scale=.12]{images/tenenbaums.png}
+\end{center}
+
+##  There's a theme for that!
+```{r wes}
+# install.packages('wesanderson')
+library("wesanderson") 
+# display a palette 
+wes_palette("Royal1")
+```
+
+# Save your beautiful plot
+##  ggsave
+* If the plot is on the screen
+```{r save1, eval=F}
+ggsave('~/path/to/figure/filename.png')
+```
+
+* If your plot is assigned to a named object
+```{r save2, eval=F}
+ggsave(plot1, '~/path/to/figure/filename.png')
+```
+
+* Specify size
+```{r save3, eval=F}
+ggsave(file = '~/path/filename.png', width = 4, height = 3, units = "in")
+```
+
+* And format
+```{r save4, eval=F}
+ggsave(file = "/path/to/figure/filename.eps")
+ggsave(file = "/path/to/figure/filename.jpg")
+ggsave(file = "/path/to/figure/filename.pdf")
+```
+
+##  Further help
+* We've only scratched the surface
+* Practice
+* Read: http://ggplot2.tidyverse.org/index.html
+* Work together
+
+\begin{center}
+\includegraphics[scale=.15]{images/chang_book.png}
+\includegraphics[scale=.15]{images/hadley.png}
+\end{center}
