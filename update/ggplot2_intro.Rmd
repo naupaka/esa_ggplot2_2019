@@ -2,17 +2,19 @@
 title: "Data Visualization Using R & ggplot2"
 author: "Naupaka Zimmerman (@naupakaz), Andrew Tredennick (@ATredennick), and Karthik Ram (@_inundata)"
 date: "August 6, 2017"
+header-includes:
+   - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\footnotesize}
+   - \makeatletter
+   - \def\verbatim{\footnotesize\@verbatim \frenchspacing\@vobeyspaces \@xverbatim}
+   - \makeatother
 output:
   beamer_presentation:
     theme: "metropolis"
     colortheme: "default"
     fig_caption: no
     slide_level: 2
+    keep_tex: no
 ---
-
-```{r set-options, echo=FALSE, cache=FALSE}
-options(size = "small")
-```
 
 ## Some housekeeping
 Install some packages
@@ -170,5 +172,27 @@ df[1:2, ]
 myplot <- ggplot(data = iris, aes(x = Sepal.Length, 
                                   y = Sepal.Width))
 summary(myplot)
-
 ```
+
+# Geometries
+
+## Some terminology
+### \alert{geom}etry
+* The geometric objects in the plot
+* points, lines, polygons, etc.
+* functions: ```geom_point()```, ```geom_bar()```, ```geom_line()```
+
+##  Basic structure
+```{r strct-basic, echo=T, eval=F}
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) +
+  geom_point()
+
+# Equivalently...
+myplot <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width))
+myplot + geom_point()
+```
+
+* Specify the data and variables inside the ```ggplot()``` function.
+* Anything else that goes in here becomes a \emph{global} setting.
+* Then add layers: geometric objects, statistical models, and facets.
+
