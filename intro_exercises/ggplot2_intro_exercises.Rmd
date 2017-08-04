@@ -136,7 +136,7 @@ log(gapminder[which(gapminder$continent == i), "gdpPercap"]))
 * A set of terms that defines the basic components of a plot
 * Used to produce figures using coherant, consistant syntax
 
-##  Why ggplot2?
+##  Why ggplot?
 * Supports a continuum of expertise
 * Easy to get started, plenty of power for complex figures 
 
