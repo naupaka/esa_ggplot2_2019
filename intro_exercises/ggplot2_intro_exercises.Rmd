@@ -223,7 +223,12 @@ ggplot(data = d2, aes(x = carat, y = price, color = color)) +
 
 ##  Refer to a color chart for beautiful visualizations
 
-http://tools.medialab.sciences-po.fr/iwanthue/
+\begin{center}
+\url{http://tools.medialab.sciences-po.fr/iwanthue/}
+\newline
+\newline
+\includegraphics[scale=0.25]{images/color_schemes.png}
+\end{center}
 
 ## Some common scales
 ```{r com-scales, eval=F}

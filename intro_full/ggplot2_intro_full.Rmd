@@ -342,7 +342,12 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
 
 ##  Refer to a color chart for beautiful visualizations
 
-http://tools.medialab.sciences-po.fr/iwanthue/
+\begin{center}
+\url{http://tools.medialab.sciences-po.fr/iwanthue/}
+\newline
+\newline
+\includegraphics[scale=0.25]{images/color_schemes.png}
+\end{center}
 
 ## Altering a continuous scale
 ```{r alt-scale, message=F}
@@ -510,11 +515,13 @@ ggplot(faithful, aes(waiting)) +
   geom_density()
 ```
 
+##  Density plot
 ```{r dens2}
 ggplot(faithful, aes(waiting)) +
   geom_density(fill = "blue", alpha = 0.1)
 ```
 
+##  Density plot
 ```{r dens3}
 ggplot(faithful, aes(waiting)) +
   geom_line(stat = "density")
