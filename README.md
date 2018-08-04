@@ -52,4 +52,4 @@ See you Sunday!
 
 # License
 
-<img src = "https://camo.githubusercontent.com/c7d7c403c2033de4f006c37737555fb2a1f109f7/687474703a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792f342e302f38307831352e706e67"><a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License.</a>.
+<img src = "https://camo.githubusercontent.com/c7d7c403c2033de4f006c37737555fb2a1f109f7/687474703a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792f342e302f38307831352e706e67">  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
