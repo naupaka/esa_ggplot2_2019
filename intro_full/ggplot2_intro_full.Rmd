@@ -1,7 +1,7 @@
 ---
 title: "Data Visualization Using R & ggplot2"
 author: "Naupaka Zimmerman (@naupakaz) and Andrew Tredennick (@ATredennick) (and Karthik Ram (@_inundata))"
-date: "August 6, 2017"
+date: "August 5, 2018"
 header-includes:
    - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\footnotesize}
    - \makeatletter
@@ -17,7 +17,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(fig.width=4, fig.height=2.5, out.width='.75\\linewidth', fig.align='center')
+knitr::opts_chunk$set(fig.width = 4, fig.height = 2.5, out.width = '.75\\linewidth', fig.align = 'center')
 ```
 
 ## Some housekeeping
