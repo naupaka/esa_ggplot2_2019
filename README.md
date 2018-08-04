@@ -3,8 +3,9 @@
 Welcome to the GitHub repository data visualization using R and ggplot2.
 
 **Location and time:**
-New Orleans Ernest N. Morial Convention Center - 340-341
-Sunday, August 05, 2018  08:00 AM - 11:30 AM
+
+* New Orleans Ernest N. Morial Convention Center - 340-341
+* Sunday, August 05, 2018  08:00 AM - 11:30 AM
 
 ## Organizers
 [Naupaka Zimmerman](http://naupaka.net) and [Andrew Tredennick](http://atredennick.github.io/)
