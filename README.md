@@ -1,14 +1,16 @@
-# ESA 2016 workshop on Data Visualization using R and ggplot2
+# ESA 2018 workshop on Data Visualization using R and ggplot2
 
 Welcome to the GitHub repository data visualization using R and ggplot2.
 
-**Location and time:**   
-B112, Oregon Convention Center    
-Sunday, August 6, 2017    
-12:00 PM - 5:00 PM   
+**Location and time:**
+New Orleans Ernest N. Morial Convention Center - 340-341
+Sunday, August 05, 2018  08:00 AM - 11:30 AM
 
 ## Organizers
-[Andrew Tredennick](http://atredennick.github.io/) and [Naupaka Zimmerman](http://naupaka.net)
+[Naupaka Zimmerman](http://naupaka.net) and [Andrew Tredennick](http://atredennick.github.io/)
+
+## Instructor
+[Naupaka Zimmerman](http://naupaka.net)
 
 ---
 
@@ -18,10 +20,10 @@ The R programming language is one of the most widely used tools for statistical 
 
 ## Pre workshop instructions
 
-**Important:** There will be wifi in conference rooms this year, but plan on spending 10 minutes Saturday night (or even before arriving in Portland) to download and install R and RStudio, to install the packages listed below, and to download a local copy of this repository (see instructions below). It takes a bit of bandwidth to do all this, so best not to rely on convention center wifi.
+**Important:** There will be wifi in conference rooms this year, but plan on spending 10 minutes Saturday night (or even before arriving in New Orleans) to download and install R and RStudio, to install the packages listed below, and to download a local copy of this repository (see instructions below). It takes a bit of bandwidth to do all this, so best not to rely on convention center wifi.
 
-### Installing R  
-If you don't already have R set up with a suitable code editor, we recommend downloading and installing [R](http://cran.cnr.berkeley.edu) and [RStudio Desktop](http://www.rstudio.com/ide/download/) for your platform. Once installed, open RStudio and install the following packages. Simply paste these commands into your prompt. 
+### Installing R
+If you don't already have R set up with a suitable code editor, we recommend downloading and installing [R](http://cran.cnr.berkeley.edu) and [RStudio Desktop](http://www.rstudio.com/ide/download/) for your platform. Once installed, open RStudio and install the following packages. Simply paste these commands into your prompt.
 
 ### Installing packages
 
@@ -36,18 +38,18 @@ You will want to copy and paste the above into the "Console" of RStudio, like be
 
 ![](cp_code.png)
 
-### Downloading code/data from this repository  
-Simply hit the **Download ZIP** button at the top-right of this page (scroll up to see it). If you're not sure where to save it, just download and unzip to your Desktop. (We will also send out a zipped folder in an email.)
+### Downloading code/data from this repository
+Simply hit the **Download ZIP** button at the top-right of this page (scroll up to see it). If you're not sure where to save it, just download and unzip to your Desktop.
 
 ![](how_to_clone_new.png)
 
-If you're having any trouble with these steps please drop me an [email](mailto:atredenn@gmail.com). I'll also strive to have local copies if you forget to install any of these tools.
+If you're having any trouble with these steps please drop me an [email](mailto:naupaka@gmail.com). I'll also strive to have local copies if you forget to install any of these tools.
 
 See you Sunday!
 
 
 ---
 
-# License  
-<a rel="license" href="http://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution 2.0 Generic License</a>.
+# License
 
+<img src = "https://camo.githubusercontent.com/c7d7c403c2033de4f006c37737555fb2a1f109f7/687474703a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792f342e302f38307831352e706e67"><a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License.</a>.
